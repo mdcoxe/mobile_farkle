@@ -56,7 +56,7 @@ func _on_roll_button_pressed():
 	status_label.text = "Rolling!!"
 	farkled = false
 	
-	# Check for "Hot Dice" scenario *before* rolling, based on currently held dice
+	# Check for "Hot Dice" scenario before rolling, based on currently held dice
 	# If all dice are currently held, it's a Hot Dice situation
 	var current_held_dice_count = 0
 	for die_data in all_dice:
@@ -71,21 +71,26 @@ func _on_roll_button_pressed():
 		for die_data in all_dice:
 			die_data.is_held = false
 		# Crucially, disable the end_roll_button temporarily
-		# Player *must* roll again.
+		# Player must roll again.
 		end_roll_button.disabled = true
 	else:
 		end_roll_button.disabled = false
-		
+	
+	
+	var dice_values_for_this_roll: Array = [] 
 	# Roll only the unheld dice and update their values
-	var current_roll_values_for_scoring: Array = []
+	#var current_roll_values_for_scoring: Array = []
 	for die_data in all_dice:
 		if not die_data.is_held:
 			die_data.value = randi_range(1, 6)
-		current_roll_values_for_scoring.append(die_data.value) 
-
+		#current_roll_values_for_scoring.append(die_data.value) 
+	for die_data in all_dice:
+		if not die_data.is_held:
+			dice_values_for_this_roll.append(die_data.value)
 	_update_display() 
-
-	var result = scoring_manager.calculate_score(current_roll_values_for_scoring)
+	
+	var result = scoring_manager.calculate_score(dice_values_for_this_roll)
+	#var result = scoring_manager.calculate_score(current_roll_values_for_scoring)
 	var roll_score = result["score"]
 	var used_dice_from_current_roll = result["used_dice"]
 
@@ -114,8 +119,8 @@ func _on_roll_button_pressed():
 	_update_display()
 	status_label.text = "Scored " + str(roll_score) + " points! Current round: " + str(current_round_score)
 	
-	# After scoring, re-check if *all* dice are now held.
-	# This check needs to happen *after* marking dice as held.
+	# After scoring, re-check if all dice are now held.
+	# This check needs to happen afgter marking dice as held.
 	var all_dice_are_held_after_scoring = true
 	for die_data in all_dice:
 		if not die_data.is_held:
