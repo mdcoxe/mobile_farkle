@@ -12,6 +12,7 @@ var current_round_score = 0
 var total_score = 0
 var round = 1
 var farkled = false
+var has_opened = false
 
 # Represents all 6 dice. Each element will be a dictionary:
 # { "value": int, "is_held": bool }
@@ -49,52 +50,59 @@ func _update_display():
 		first = false
 	dice_display_text += "]"
 	dice_label.text = dice_display_text
-
 	score_label.text = "Round Score: %s | Total Score: %s" % [current_round_score, total_score]
 
 func _on_roll_button_pressed():
 	status_label.text = "Rolling!!"
-
-	var dice_to_score_this_roll: Array = [] 
-
-	var all_dice_are_held = true
+	farkled = false
+	
+	# Check for "Hot Dice" scenario *before* rolling, based on currently held dice
+	# If all dice are currently held, it's a Hot Dice situation
+	var current_held_dice_count = 0
 	for die_data in all_dice:
-		if not die_data.is_held:
-			all_dice_are_held = false
-			break
+		if die_data.is_held:
+			current_held_dice_count += 1
 
-	if all_dice_are_held:
+	var is_hot_dice_situation = (current_held_dice_count == 6)
+
+	if is_hot_dice_situation:
 		status_label.text = "Hot Dice! Rolling all 6 again!"
+		# Clear held status for all dice for the new roll
 		for die_data in all_dice:
 			die_data.is_held = false
-
+		# Crucially, disable the end_roll_button temporarily
+		# Player *must* roll again.
+		end_roll_button.disabled = true
+	else:
+		end_roll_button.disabled = false
+		
+	# Roll only the unheld dice and update their values
+	var current_roll_values_for_scoring: Array = []
 	for die_data in all_dice:
 		if not die_data.is_held:
 			die_data.value = randi_range(1, 6)
-		dice_to_score_this_roll.append(die_data.value) 
+		current_roll_values_for_scoring.append(die_data.value) 
 
 	_update_display() 
 
-
-	var unheld_dice_values: Array = []
-	for die_data in all_dice:
-		if not die_data.is_held:
-			unheld_dice_values.append(die_data.value)
-
-	var result = scoring_manager.calculate_score(unheld_dice_values)
+	var result = scoring_manager.calculate_score(current_roll_values_for_scoring)
 	var roll_score = result["score"]
-	var used_dice_from_unheld = result["used_dice"] 
+	var used_dice_from_current_roll = result["used_dice"]
 
 	if roll_score == 0:
 		farkled = true
 		status_label.text = "Farkle! No score this round."
-		current_round_score = 0 
+		current_round_score = 0
+		# If farkled, player cannot roll again. End their turn.
+		roll_button.disabled = true
+		end_roll_button.disabled = false 
 		_on_end_button_pressed()
 		return
 
 	current_round_score += roll_score
 	
-	var temp_used_dice = used_dice_from_unheld.duplicate()
+	# Mark the scored dice as held
+	var temp_used_dice = used_dice_from_current_roll.duplicate()
 	for die_data in all_dice:
 		if not die_data.is_held: 
 			if temp_used_dice.has(die_data.value):
@@ -103,13 +111,46 @@ func _on_roll_button_pressed():
 				if index_to_remove != -1:
 					temp_used_dice.remove_at(index_to_remove)
 
-	_update_display() 
-	status_label.text = "Scored " + str(roll_score) + " points!"
+	_update_display()
+	status_label.text = "Scored " + str(roll_score) + " points! Current round: " + str(current_round_score)
+	
+	# After scoring, re-check if *all* dice are now held.
+	# This check needs to happen *after* marking dice as held.
+	var all_dice_are_held_after_scoring = true
+	for die_data in all_dice:
+		if not die_data.is_held:
+			all_dice_are_held_after_scoring = false
+			break
+
+	if all_dice_are_held_after_scoring:
+		status_label.text += "\nHot Dice! You must roll all 6 again!" 
+		end_roll_button.disabled = true 
+		roll_button.disabled = false 
+	else:
+		# Not a hot dice, player can choose to roll or end.
+		end_roll_button.disabled = false 
+		roll_button.disabled = false 
+
+
 
 func _on_end_button_pressed():
-	total_score += current_round_score
-	round += 1 
-
+	if farkled:
+		status_label.text = "Farkled! Your round score was lost."
+		current_round_score = 0
+		total_score += current_round_score
+	else:
+		if not has_opened and current_round_score < 500:
+			status_label.text = "You need at least 500 points to get on the board!"
+			
+			_update_display()
+			return
+		else:
+			if not has_opened:
+				has_opened = true
+				status_label.text = "You're on the board! " + str(current_round_score) + " points added to total!"
+			else:
+				status_label.text = "Taking points! " + str(current_round_score) + " points added to total."
+			total_score += current_round_score
 	
 	if WinManager.check_win(total_score):
 		status_label.text = "Congrats! You won!!"
@@ -117,11 +158,7 @@ func _on_end_button_pressed():
 		roll_button.disabled = true
 		end_roll_button.disabled = true
 		return
-
-	if farkled:
-		status_label.text = "Farkled! Your round score was lost."
-	else:
-		status_label.text = "Taking points! Start next round."
 	
+	round += 1 
 	_reset_round() 
 	_update_display() 
