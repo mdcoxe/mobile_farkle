@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://deodacmr2d0nu"]
+
+[ext_resource type="Texture2D" uid="uid://u6nt0jhu5gl1" path="res://Assets/Dice6x6All.png" id="1_1r5f6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkg4v"]
+atlas = ExtResource("1_1r5f6")
+region = Rect2(0, 0, 32, 32)
+
+[node name="Dice1" type="TextureRect"]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_gkg4v")
