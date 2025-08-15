@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bit2pvp7juu3p"]
+
+[ext_resource type="Texture2D" uid="uid://iijbtk283tsf" path="res://Assets/buttons/testf.png" id="1_411oj"]
+
+[node name="Farkleicon" type="TextureRect"]
+custom_minimum_size = Vector2(50, 50)
+texture = ExtResource("1_411oj")

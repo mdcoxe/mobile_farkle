@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnfqd0l5j6hjy"]
+[gd_scene load_steps=6 format=3 uid="uid://bnfqd0l5j6hjy"]
 
-[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_nvnyk"]
-[ext_resource type="Script" path="res://Scripts/scoring_manager.gd" id="2_uvnr1"]
+[ext_resource type="Script" uid="uid://b3bhim51njd5k" path="res://Scripts/game_manager.gd" id="1_nvnyk"]
+[ext_resource type="Texture2D" uid="uid://d34kxxcu0b0sy" path="res://Assets/dice2.png" id="1_r0du0"]
+[ext_resource type="Script" uid="uid://f6qojr857eh5" path="res://Scripts/scoring_manager.gd" id="2_uvnr1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm0pq"]
+atlas = ExtResource("1_r0du0")
+region = Rect2(0, 0, 128, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fos0i"]
+atlas = ExtResource("1_r0du0")
+region = Rect2(128, 0, 128, 0)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -26,10 +35,8 @@ text = "Round: 1"
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_right = -181.0
-offset_bottom = 119.0
+offset_bottom = 40.0
 grow_horizontal = 2
-scale = Vector2(2, 2)
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -50,10 +57,12 @@ offset_right = 328.0
 offset_bottom = 713.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="RollButton" type="Button" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -67,6 +76,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "End Round
 "
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_cm0pq")
+texture_pressed = SubResource("AtlasTexture_fos0i")
 
 [node name="DiceLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(100, 40)
@@ -135,3 +149,4 @@ script = ExtResource("2_uvnr1")
 
 [connection signal="pressed" from="VBoxContainer/RollButton" to="Managers/GameManager" method="_on_roll_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/EndRollButton" to="Managers/GameManager" method="_on_end_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureButton" to="Managers/GameManager" method="_on_roll_button_pressed"]

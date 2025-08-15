@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://b77dhh40o17wj"]
 
-[ext_resource type="Texture2D" uid="uid://u6nt0jhu5gl1" path="res://Assets/Dice6x6All.png" id="1_31yc8"]
+[ext_resource type="Texture2D" uid="uid://c80tmxouox0v3" path="res://Assets/Dice/Dice1.png" id="1_mpyyc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gkg4v"]
-atlas = ExtResource("1_31yc8")
+atlas = ExtResource("1_mpyyc")
 region = Rect2(0, 160, 32, 32)
 
 [node name="Dice6" type="TextureRect"]
+custom_minimum_size = Vector2(125, 125)
 texture = SubResource("AtlasTexture_gkg4v")

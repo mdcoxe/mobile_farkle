@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjrn8pn21fxu5"
-path="res://.godot/imported/Dice6x6fancy.png-168e65563f476fa08559dfb7d855c2fd.ctex"
+uid="uid://bnujr4n8lid02"
+path="res://.godot/imported/RollButton.png-d37cdb1f1ee207a47a7e9a7f970f7697.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Dice6x6fancy.png"
-dest_files=["res://.godot/imported/Dice6x6fancy.png-168e65563f476fa08559dfb7d855c2fd.ctex"]
+source_file="res://Assets/Textures/RollButton.png"
+dest_files=["res://.godot/imported/RollButton.png-d37cdb1f1ee207a47a7e9a7f970f7697.ctex"]
 
 [params]
 

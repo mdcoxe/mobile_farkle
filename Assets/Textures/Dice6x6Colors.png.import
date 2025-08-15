@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfke5r0es1nuy"
-path="res://.godot/imported/Dice6x6Outline.png-b48bcfccdc002da3bb8f2bd94344df9b.ctex"
+uid="uid://du5xgokbbrmlj"
+path="res://.godot/imported/Dice6x6Colors.png-687cf2629a700e83bebf5492a2d0e750.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Dice6x6Outline.png"
-dest_files=["res://.godot/imported/Dice6x6Outline.png-b48bcfccdc002da3bb8f2bd94344df9b.ctex"]
+source_file="res://Assets/Textures/Dice6x6Colors.png"
+dest_files=["res://.godot/imported/Dice6x6Colors.png-687cf2629a700e83bebf5492a2d0e750.ctex"]
 
 [params]
 

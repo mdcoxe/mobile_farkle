@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqsg6l5rewdc2"]
 
-[ext_resource type="Script" path="res://Scripts/start.gd" id="1_3mp0d"]
+[ext_resource type="Script" uid="uid://cd1v00toyvs0y" path="res://Scripts/start.gd" id="1_3mp0d"]
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -44,7 +44,6 @@ alignment = 1
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Play"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2

@@ -1,16 +1,15 @@
 extends Node
 
+@onready var roll_button: TextureButton = $"../../MarginContainer/VBoxContainer/BottomContainer/RightSide/RollButton"
+@onready var end_roll_button: Button = $"../../MarginContainer/VBoxContainer/BottomContainer/RightSide/Button"
+@onready var status_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/StatusLabel"
+@onready var total_score_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/TotalScoreLabel"
+@onready var round_score_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/RoundScoreLabel"
+@onready var round_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/RoundLabel"
+@onready var farkle_container: HBoxContainer = $"../../MarginContainer/VBoxContainer/TopContainer/MarginContainer2/FarkleRow/FarkleContainer"
 
-@onready var roll_button: Button = $"../../VBoxContainer/RollButton"
-@onready var end_roll_button: Button = $"../../VBoxContainer/EndRollButton"
-@onready var round_label: Label = $"../../RoundLabel"
-@onready var dice_label: Label = $"../../DiceLabel"
-@onready var score_label: Label = $"../../ScoreLabel"
-@onready var status_label: Label = $"../../StatusLabel"
-@onready var current_score_label: Label = $"../../CurrentScoreLabel"
-
-@onready var dice_container: GridContainer = $"../../MarginContainer/GridContainer"
-@onready var scoring_manager: Node = $"../ScoringManager" 
+@onready var dice_container: GridContainer = $"../../MarginContainer/VBoxContainer/TopContainer/MarginContainer/DiceContainer"
+@onready var scoring_manager: Node = $"../ScoringManager"
 
 const DICE_TEXTURES: Array[PackedScene] = [
 	preload("res://Assets/Dice/dice1.tscn"),
@@ -20,13 +19,16 @@ const DICE_TEXTURES: Array[PackedScene] = [
 	preload("res://Assets/Dice/dice5.tscn"),
 	preload("res://Assets/Dice/dice6.tscn"),
 ]
+const F_ICON := preload("res://Assets/buttons/farkleicon.tscn")
 
+var current_round_score := 0
+var total_score := 0
+var round_count := 1
+var farkle_count := 0
 
-var current_round_score = 0
-var total_score = 0
-var round = 1
-var farkled = false
-var has_opened = false
+var farkled := false
+var has_opened := false
+var game_over := false;
 
 # Represents all 6 dice. Each element will be a dictionary:
 # { "value": int, "is_held": bool }
@@ -47,26 +49,26 @@ func _reset_round():
 		die_data.value = 0
 		die_data.is_held = false
 	
-	round_label.text = "Round: " + str(round)
-	current_score_label.text = "Round Score: 0"
-	score_label.text = "Total Score: %s" % total_score
+	round_label.text = "Round: " + str(round_count)
+	round_score_label.text = "Round Score: 0"
+	total_score_label.text = "Total Score: %s" % total_score
 	roll_button.disabled = false
-	end_roll_button.disabled = false
+	end_roll_button.disabled = true
 
 func _update_display():
-	var dice_display_text = "Your dice: ["
-	var first = true
+	#var dice_display_text = "Your dice: ["
+	#var first = true
 	
 	for child in dice_container.get_children():
 		child.queue_free()
 		
 	for die_data in all_dice:
-		if not first:
-			dice_display_text += ", "
-		dice_display_text += str(die_data.value)
-		if die_data.is_held:
-			dice_display_text += "(H)" 
-		first = false
+		#if not first:
+			#dice_display_text += ", "
+		#dice_display_text += str(die_data.value)
+		#if die_data.is_held:
+			#dice_display_text += "(H)" 
+		#first = false
 			   # Update the visual dice
 		var die_value = die_data["value"]
 		if die_value > 0:
@@ -77,17 +79,15 @@ func _update_display():
 			if die_data["is_held"] and new_dice_instance is TextureRect:
 				new_dice_instance.modulate = Color(0.6, 0.6, 0.6)
 		
-		
-	dice_display_text += "]"
-	dice_label.text = dice_display_text
-	current_score_label.text = "Round Score: %s" % current_round_score
-	score_label.text = "Total Score: %s" % total_score
-
-
-
+	#dice_display_text += "]"
+	#dice_label.text = dice_display_text
+	round_score_label.text = "Round Score: %s" % current_round_score
+	total_score_label.text = "Total Score: %s" % total_score
 
 
 func _on_roll_button_pressed():
+	if game_over:
+		return
 	status_label.text = "\nRolling!!"
 	farkled = false
 
@@ -101,7 +101,7 @@ func _on_roll_button_pressed():
 	var is_hot_dice_situation = (current_held_dice_count == 6)
 
 	if is_hot_dice_situation:
-		status_label.text = "Hot Dice! \nRolling all 6 again!"
+		status_label.text = " Hot Dice! \nRolling all 6 again!"
 		# Clear held status for all dice for the new roll
 		for die_data in all_dice:
 			die_data.is_held = false
@@ -131,6 +131,15 @@ func _on_roll_button_pressed():
 
 	if roll_score == 0:
 		farkled = true
+		_add_farkle_icon()
+		farkle_count += 1
+		if farkle_count >= 10:
+			_end_game("Get Farked! You LOST!!")
+			#status_label.text = "Get Farked! You LOST!!"
+			#total_score_label.text = "Final Score: %s" % total_score
+			#roll_button.disabled = true
+			#end_roll_button.disabled = true
+			return
 		status_label.text = "Farkle! \nNo score this round."
 		current_round_score = 0
 		# If farkled, player cannot roll again. End their turn.
@@ -152,7 +161,7 @@ func _on_roll_button_pressed():
 					temp_used_dice.remove_at(index_to_remove)
 
 	_update_display()
-	current_score_label.text = "RRRRR round: " + str(current_round_score)
+	round_score_label.text = "Round Score: " + str(current_round_score)
 	status_label.text = "Scored " + str(roll_score) + " points!"
 	
 	# After scoring, re-check if all dice are now held.
@@ -164,7 +173,7 @@ func _on_roll_button_pressed():
 			break
 
 	if all_dice_are_held_after_scoring:
-		status_label.text += "Hot Dice! \nYou must roll all 6 again!" 
+		status_label.text += " Hot Dice! \nYou must roll all 6 again!" 
 		end_roll_button.disabled = true 
 		roll_button.disabled = false 
 	else:
@@ -172,18 +181,25 @@ func _on_roll_button_pressed():
 		end_roll_button.disabled = false 
 		roll_button.disabled = false 
 
-
-
 func _on_end_button_pressed():
+	if game_over:
+		return
+		
+	if end_roll_button.disabled:
+		return
+		
+	end_roll_button.disabled = true
+	roll_button.disabled = true
+	
 	if farkled:
-		status_label.text = "Farkled! \nYour round score was lost."
+		#status_label.text = "Farkled! \nYour round score was lost."
 		current_round_score = 0
 		total_score += current_round_score
 	else:
 		if not has_opened and current_round_score < 500:
 			status_label.text = "You need at least 500 points to get on the board!"
-			
-			_update_display()
+			roll_button.disabled = false
+			#_update_display()
 			return
 		else:
 			if not has_opened:
@@ -194,12 +210,24 @@ func _on_end_button_pressed():
 			total_score += current_round_score
 	
 	if WinManager.check_win(total_score):
-		status_label.text = "Congrats! You won!!"
-		score_label.text = "Final Score: %s" % total_score
-		roll_button.disabled = true
-		end_roll_button.disabled = true
+		_end_game("Congrats! You won!!")
+		#status_label.text = "Congrats! You won!!"
+		#total_score_label.text = "Final Score: %s" % total_score
+		#roll_button.disabled = true
+		#end_roll_button.disabled = true
 		return
 	
-	round += 1 
+	round_count += 1 
 	_reset_round() 
 	_update_display() 
+	
+func _end_game(message: String):
+	game_over = true
+	status_label.text = message
+	total_score_label.text = "Final Score: %s" % total_score
+	roll_button.disabled = true
+	end_roll_button.disabled = true
+
+func _add_farkle_icon():
+		var inst := F_ICON.instantiate()
+		farkle_container.add_child(inst)
