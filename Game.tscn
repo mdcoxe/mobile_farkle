@@ -142,5 +142,7 @@ script = ExtResource("3_sb48q")
 [node name="ScoringManager" type="Node" parent="Managers"]
 script = ExtResource("4_t88pq")
 
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/RightSide/RollButton" to="Managers/GameManager" method="_on_roll_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/RightSide/Button" to="Managers/GameManager" method="_on_end_button_pressed"]
