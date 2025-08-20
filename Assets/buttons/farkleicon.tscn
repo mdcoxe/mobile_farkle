@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bit2pvp7juu3p"]
+[gd_scene load_steps=3 format=3 uid="uid://bit2pvp7juu3p"]
 
-[ext_resource type="Texture2D" uid="uid://iijbtk283tsf" path="res://Assets/buttons/testf.png" id="1_411oj"]
+[ext_resource type="Texture2D" uid="uid://bxir6h2jo71k7" path="res://Assets/FarkedGameBoard.png" id="1_411oj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsitu"]
+atlas = ExtResource("1_411oj")
+region = Rect2(252, 149, 8, 14)
 
 [node name="Farkleicon" type="TextureRect"]
-custom_minimum_size = Vector2(50, 50)
-texture = ExtResource("1_411oj")
+texture = SubResource("AtlasTexture_bsitu")
+stretch_mode = 2

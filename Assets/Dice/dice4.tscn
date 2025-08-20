@@ -7,5 +7,4 @@ atlas = ExtResource("1_iqjok")
 region = Rect2(0, 96, 32, 32)
 
 [node name="Dice4" type="TextureRect"]
-custom_minimum_size = Vector2(125, 125)
 texture = SubResource("AtlasTexture_gkg4v")

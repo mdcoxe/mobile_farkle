@@ -1,0 +1,230 @@
+[gd_scene load_steps=17 format=3 uid="uid://cj8f77vh1vqlu"]
+
+[ext_resource type="Texture2D" uid="uid://bxir6h2jo71k7" path="res://Assets/FarkedGameBoard.png" id="3_sqlvn"]
+[ext_resource type="Texture2D" uid="uid://ca1jbi3jehn4y" path="res://HamburgerButtonBase.tres" id="4_phsnv"]
+[ext_resource type="Script" uid="uid://b3bhim51njd5k" path="res://Scripts/game_manager.gd" id="4_ysysf"]
+[ext_resource type="Texture2D" uid="uid://dxxpqaq0pk7f6" path="res://Roll.tres" id="5_sx7l0"]
+[ext_resource type="Script" uid="uid://f6qojr857eh5" path="res://Scripts/scoring_manager.gd" id="5_yjg4e"]
+[ext_resource type="Texture2D" uid="uid://cml41x4vgmj5j" path="res://HamburgerButtonPressed.tres" id="5_ysysf"]
+[ext_resource type="Texture2D" uid="uid://blxnaprpgb14t" path="res://Collect.tres" id="6_6ridx"]
+[ext_resource type="Texture2D" uid="uid://c21hbmavr43ch" path="res://HamburgerButtonHover.tres" id="6_yjg4e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phsnv"]
+atlas = ExtResource("3_sqlvn")
+region = Rect2(0, 0, 180, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp6yv"]
+atlas = ExtResource("3_sqlvn")
+region = Rect2(0, 32, 180, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx7l0"]
+atlas = ExtResource("3_sqlvn")
+region = Rect2(360, 137, 180, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ridx"]
+atlas = ExtResource("3_sqlvn")
+region = Rect2(0, 175, 180, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysysf"]
+atlas = ExtResource("3_sqlvn")
+region = Rect2(640, 181, 74, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjg4e"]
+atlas = ExtResource("3_sqlvn")
+region = Rect2(460, 181, 74, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yikv"]
+atlas = ExtResource("3_sqlvn")
+region = Rect2(640, 249, 74, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36gnl"]
+atlas = ExtResource("3_sqlvn")
+region = Rect2(460, 249, 74, 64)
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="GameManager" type="Node" parent="Managers"]
+script = ExtResource("4_ysysf")
+
+[node name="ScoringManager" type="Node" parent="Managers"]
+script = ExtResource("5_yjg4e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 180.0
+offset_bottom = 320.0
+theme_override_constants/separation = 0
+
+[node name="Header" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_phsnv")
+
+[node name="HeaderHBox" type="HBoxContainer" parent="VBoxContainer/Header"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="VBoxContainer/Header/HeaderHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Header/HeaderHBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 5
+
+[node name="Hamburger" type="TextureButton" parent="VBoxContainer/Header/HeaderHBox/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_phsnv")
+texture_pressed = ExtResource("5_ysysf")
+texture_hover = ExtResource("6_yjg4e")
+
+[node name="DiceMat" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_lp6yv")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/DiceMat"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 13
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/DiceMat/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 17
+theme_override_constants/v_separation = 15
+columns = 3
+
+[node name="FarkedBar" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_sx7l0")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/FarkedBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 12
+
+[node name="FarkedBarHBox" type="HBoxContainer" parent="VBoxContainer/FarkedBar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Spacer" type="Control" parent="VBoxContainer/FarkedBar/MarginContainer/FarkedBarHBox"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+
+[node name="Bottom" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6ridx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Bottom"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_right = 12
+
+[node name="StatsBox" type="VBoxContainer" parent="VBoxContainer/Bottom/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Spacer" type="Control" parent="VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_stretch_ratio = 0.92
+
+[node name="RoundNumLabel" type="Label" parent="VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox"]
+layout_mode = 2
+text = "Test"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+
+[node name="RoundScoreLabel" type="Label" parent="VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox"]
+layout_mode = 2
+text = "Test"
+horizontal_alignment = 1
+
+[node name="Spacer3" type="Control" parent="VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+
+[node name="TotalScoreLabel" type="Label" parent="VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox"]
+layout_mode = 2
+text = "Test"
+horizontal_alignment = 1
+
+[node name="Spacer4" type="Control" parent="VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox"]
+layout_mode = 2
+
+[node name="ButtonBox" type="VBoxContainer" parent="VBoxContainer/Bottom/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer/ButtonBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 7
+
+[node name="RollButton" type="TextureButton" parent="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_sx7l0")
+texture_pressed = SubResource("AtlasTexture_ysysf")
+texture_hover = SubResource("AtlasTexture_yjg4e")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer/ButtonBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+
+[node name="CollectButton" type="TextureButton" parent="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("6_6ridx")
+texture_pressed = SubResource("AtlasTexture_5yikv")
+texture_hover = SubResource("AtlasTexture_36gnl")
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 138.0
+offset_right = 179.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 8
+
+[connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton" to="Managers/GameManager" method="_on_roll_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2/CollectButton" to="Managers/GameManager" method="_on_end_button_pressed"]

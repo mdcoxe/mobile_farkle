@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://blxnaprpgb14t"]
+
+[ext_resource type="Texture2D" uid="uid://bxir6h2jo71k7" path="res://Assets/FarkedGameBoard.png" id="1_eci5i"]
+
+[resource]
+atlas = ExtResource("1_eci5i")
+region = Rect2(280, 249, 74, 64)

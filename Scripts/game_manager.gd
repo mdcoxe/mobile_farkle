@@ -1,14 +1,24 @@
 extends Node
 
-@onready var roll_button: TextureButton = $"../../MarginContainer/VBoxContainer/BottomContainer/RightSide/RollButton"
-@onready var end_roll_button: Button = $"../../MarginContainer/VBoxContainer/BottomContainer/RightSide/Button"
-@onready var status_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/StatusLabel"
-@onready var total_score_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/TotalScoreLabel"
-@onready var round_score_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/RoundScoreLabel"
-@onready var round_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/RoundLabel"
-@onready var farkle_container: HBoxContainer = $"../../MarginContainer/VBoxContainer/TopContainer/MarginContainer2/FarkleRow/FarkleContainer"
+@onready var status_label: Label = $"../../StatusLabel"
+@onready var total_score_label: Label = $"../../VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox/TotalScoreLabel"
+@onready var round_score_label: Label = $"../../VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox/RoundScoreLabel"
+@onready var round_label: Label = $"../../VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox/RoundNumLabel"
 
-@onready var dice_container: GridContainer = $"../../MarginContainer/VBoxContainer/TopContainer/MarginContainer/DiceContainer"
+@onready var roll_button: TextureButton = $"../../VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton"
+@onready var end_roll_button: TextureButton = $"../../VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2/CollectButton"
+@onready var farkle_container: HBoxContainer = $"../../VBoxContainer/FarkedBar/MarginContainer/FarkedBarHBox"
+
+#@onready var roll_button: TextureButton = $"../../MarginContainer/VBoxContainer/BottomContainer/RightSide/RollButton"
+#@onready var end_roll_button: Button = $"../../MarginContainer/VBoxContainer/BottomContainer/RightSide/Button"
+#@onready var status_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/StatusLabel"
+#@onready var total_score_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/TotalScoreLabel"
+#@onready var round_score_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/RoundScoreLabel"
+#@onready var round_label: Label = $"../../MarginContainer/VBoxContainer/BottomContainer/LeftSide/RoundLabel"
+#@onready var farkle_container: HBoxContainer = $"../../MarginContainer/VBoxContainer/TopContainer/MarginContainer2/FarkleRow/FarkleContainer"
+@onready var dice_container: GridContainer = $"../../VBoxContainer/DiceMat/MarginContainer/GridContainer"
+
+#@onready var dice_container: GridContainer = $"../../MarginContainer/VBoxContainer/TopContainer/MarginContainer/DiceContainer"
 @onready var scoring_manager: Node = $"../ScoringManager"
 
 const DICE_TEXTURES: Array[PackedScene] = [
@@ -49,9 +59,9 @@ func _reset_round():
 		die_data.value = 0
 		die_data.is_held = false
 	
-	round_label.text = "Round: " + str(round_count)
-	round_score_label.text = "Round Score: 0"
-	total_score_label.text = "Total Score: %s" % total_score
+	round_label.text = str(round_count)
+	round_score_label.text = "0"
+	total_score_label.text = "%s" % total_score
 	roll_button.disabled = false
 	end_roll_button.disabled = true
 
@@ -81,8 +91,8 @@ func _update_display():
 		
 	#dice_display_text += "]"
 	#dice_label.text = dice_display_text
-	round_score_label.text = "Round Score: %s" % current_round_score
-	total_score_label.text = "Total Score: %s" % total_score
+	round_score_label.text = "%s" % current_round_score
+	total_score_label.text = "%s" % total_score
 
 
 func _on_roll_button_pressed():
@@ -161,7 +171,7 @@ func _on_roll_button_pressed():
 					temp_used_dice.remove_at(index_to_remove)
 
 	_update_display()
-	round_score_label.text = "Round Score: " + str(current_round_score)
+	round_score_label.text = str(current_round_score)
 	status_label.text = "Scored " + str(roll_score) + " points!"
 	
 	# After scoring, re-check if all dice are now held.
@@ -224,7 +234,7 @@ func _on_end_button_pressed():
 func _end_game(message: String):
 	game_over = true
 	status_label.text = message
-	total_score_label.text = "Final Score: %s" % total_score
+	total_score_label.text = "%s" % total_score
 	roll_button.disabled = true
 	end_roll_button.disabled = true
 
