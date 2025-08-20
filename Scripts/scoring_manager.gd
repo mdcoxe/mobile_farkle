@@ -14,6 +14,7 @@ var scoring_values = {
 	"single_5": 50,
 }
 
+
 func calculate_score(dice:Array)-> Dictionary:
 	var counts: Dictionary = {}
 	for d in dice:
@@ -36,8 +37,8 @@ func calculate_score(dice:Array)-> Dictionary:
 		"used_dice": used_dice,
 	}
 	
+	
 # === RULES ===
-
 func _three_pairs(counts: Dictionary, used_dice: Array) -> int:
 	var score = 0
 	var pairs: Array = []
@@ -53,7 +54,8 @@ func _three_pairs(counts: Dictionary, used_dice: Array) -> int:
 			if counts[num] == 0:
 				counts.erase(num)
 	return score
-
+	
+	
 func _two_triples(counts: Dictionary, used_dice: Array) -> int:
 	var score = 0
 	var triples: Array = []
@@ -69,7 +71,8 @@ func _two_triples(counts: Dictionary, used_dice: Array) -> int:
 			if counts[num] == 0:
 				counts.erase(num)
 	return score
-
+	
+	
 func _six_dice_straight(counts: Dictionary, used_dice: Array) -> int:
 	var score = 0
 	var straight = true
@@ -85,7 +88,8 @@ func _six_dice_straight(counts: Dictionary, used_dice: Array) -> int:
 			if counts[num] == 0:
 				counts.erase(num)
 	return score
-
+	
+	
 func _three_of_a_kind(counts: Dictionary, used_dice: Array) -> int:
 	var score = 0
 	for num in counts.keys():
@@ -100,7 +104,8 @@ func _three_of_a_kind(counts: Dictionary, used_dice: Array) -> int:
 			if counts[num] == 0:
 				counts.erase(num)
 	return score
-
+	
+	
 func _four_of_a_kind(counts: Dictionary, used_dice: Array) -> int:
 	var score = 0
 	for num in counts.keys():
@@ -112,7 +117,8 @@ func _four_of_a_kind(counts: Dictionary, used_dice: Array) -> int:
 			if counts[num] == 0:
 				counts.erase(num)
 	return score
-
+	
+	
 func _five_of_a_kind(counts: Dictionary, used_dice: Array) -> int:
 	var score = 0
 	for num in counts.keys():
@@ -124,7 +130,8 @@ func _five_of_a_kind(counts: Dictionary, used_dice: Array) -> int:
 			if counts[num] == 0:
 				counts.erase(num)
 	return score
-
+	
+	
 func _six_of_a_kind(counts: Dictionary, used_dice: Array) -> int:
 	var score = 0
 	for num in counts.keys():
@@ -136,7 +143,8 @@ func _six_of_a_kind(counts: Dictionary, used_dice: Array) -> int:
 			if counts[num] == 0:
 				counts.erase(num)
 	return score
-
+	
+	
 func _four_and_a_pair(counts: Dictionary, used_dice: Array) -> int:
 	var score = 0
 	var four_of_a_kind: Array = []
@@ -160,7 +168,8 @@ func _four_and_a_pair(counts: Dictionary, used_dice: Array) -> int:
 		if counts[pair[0]] == 0:
 			counts.erase(pair[0])
 	return score
-
+	
+	
 func _individual_ones_and_fives(counts: Dictionary, used_dice: Array) -> int:
 	var score = 0
 	for num in [1, 5]:
