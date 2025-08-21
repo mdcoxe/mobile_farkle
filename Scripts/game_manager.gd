@@ -20,6 +20,7 @@ const DICE_TEXTURES: Array[PackedScene] = [
 	preload("res://Assets/Dice/dice5.tscn"),
 	preload("res://Assets/Dice/dice6.tscn"),
 ]
+const GAME_OVER_STATS = preload("res://GameOverStats.tscn")
 
 var current_round_score := 0
 var total_score := 0
@@ -204,11 +205,25 @@ func _on_end_button_pressed():
 	
 func _end_game(message: String):
 	game_over = true
+	var end_game_stats = {
+		"message": message,
+		"total_score": total_score,
+		"highest_roll": 0,
+		"farkle_count": farkle_count,
+		"round_count": round_count,
+		"win": (message.find("won") != -1) 
+	}
+
+	var end_game_screen = GAME_OVER_STATS.instantiate()
+
+	add_child(end_game_screen)
+	end_game_screen.show_stats(end_game_stats)
+
 	status_label.text = message
 	total_score_label.text = "%s" % total_score
 	roll_button.disabled = true
 	end_roll_button.disabled = true
-	
+
 	
 func _add_farkle_icon():
 		var inst := F_ICON.instantiate()

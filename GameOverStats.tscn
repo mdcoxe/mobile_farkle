@@ -1,0 +1,137 @@
+[gd_scene load_steps=3 format=3 uid="uid://fxrfow6rtn01"]
+
+[ext_resource type="Script" uid="uid://dv0034c4qda48" path="res://Scripts/game_over_stats.gd" id="1_mbo1y"]
+[ext_resource type="FontFile" uid="uid://iq653u836gk" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="2_7sk8l"]
+
+[node name="GameOverStatsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mbo1y")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(1, 0, 0.305882, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+text = "Game Over!!"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResultsLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+text = "You Won!!"
+horizontal_alignment = 1
+
+[node name="Spacer3" type="Control" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Stats" type="VBoxContainer" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="TotalScoreLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+text = "Total Score:"
+
+[node name="HighesRollLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+text = "Highest Roll:"
+
+[node name="FarklesCountLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+text = "# Farkles:"
+
+[node name="RoundsCountLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+text = "# Rounds: "
+
+[node name="Values" type="VBoxContainer" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="TotalScoreValue" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+
+[node name="HighesRollValue" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+
+[node name="FarkleCountValue" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+
+[node name="RoundsCountValue" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+
+[node name="Spacer" type="Control" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="MarginContainer" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ReturnToStartButton" type="Button" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_font_sizes/font_size = 21
+text = "Play Again?"
+
+[node name="FontSizeTimer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
+[connection signal="pressed" from="MarginContainer/ColorRect/MarginContainer/VBoxContainer/ButtonContainer/ReturnToStartButton" to="." method="_on_return_to_start_button_pressed"]
+[connection signal="timeout" from="FontSizeTimer" to="." method="_on_font_size_timer_timeout"]
