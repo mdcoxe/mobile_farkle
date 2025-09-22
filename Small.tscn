@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bblid5l88n5t6"]
+[gd_scene load_steps=18 format=3 uid="uid://bblid5l88n5t6"]
 
+[ext_resource type="Script" uid="uid://ft4h6alv4a3l" path="res://Scripts/game.gd" id="1_yjg4e"]
+[ext_resource type="Script" uid="uid://2o6ue81275ei" path="res://Scripts/game_manager1.gd" id="2_yjg4e"]
 [ext_resource type="Texture2D" uid="uid://bxir6h2jo71k7" path="res://Assets/FarkedGameBoard.png" id="3_sqlvn"]
 [ext_resource type="Texture2D" uid="uid://ca1jbi3jehn4y" path="res://HamburgerButtonBase.tres" id="4_phsnv"]
-[ext_resource type="Script" uid="uid://b3bhim51njd5k" path="res://Scripts/game_manager.gd" id="4_ysysf"]
 [ext_resource type="Texture2D" uid="uid://dxxpqaq0pk7f6" path="res://Roll.tres" id="5_sx7l0"]
 [ext_resource type="Script" uid="uid://f6qojr857eh5" path="res://Scripts/scoring_manager.gd" id="5_yjg4e"]
 [ext_resource type="Texture2D" uid="uid://cml41x4vgmj5j" path="res://HamburgerButtonPressed.tres" id="5_ysysf"]
@@ -50,9 +51,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Managers" type="Node" parent="."]
+script = ExtResource("1_yjg4e")
 
 [node name="GameManager" type="Node" parent="Managers"]
-script = ExtResource("4_ysysf")
+script = ExtResource("2_yjg4e")
 
 [node name="ScoringManager" type="Node" parent="Managers"]
 script = ExtResource("5_yjg4e")
@@ -218,12 +220,21 @@ texture_normal = ExtResource("6_6ridx")
 texture_pressed = SubResource("AtlasTexture_5yikv")
 texture_hover = SubResource("AtlasTexture_36gnl")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 78.0
+offset_right = 178.0
+offset_bottom = 90.0
+color = Color(1, 1, 1, 0.521569)
+
 [node name="StatusLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 83.0
-offset_top = 138.0
-offset_right = 179.0
-offset_bottom = 174.0
+offset_left = 3.0
+offset_top = 78.0
+offset_right = 178.0
+offset_bottom = 90.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 
 [connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton" to="Managers/GameManager" method="_on_roll_button_pressed"]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://00fc5u0ditmy"]
+
+[ext_resource type="Texture2D" uid="uid://cfkvcjqb7is7y" path="res://Assets/Dice/DiceRolling.png" id="1_6k8ms"]
+
+[sub_resource type="Animation" id="Animation_u7lgk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiceDisplay:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_qfnnr"]
+resource_name = "Roll"
+length = 0.4
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiceDisplay:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16), Rect2(16, 0, 16, 16), Rect2(32, 0, 16, 16), Rect2(48, 0, 16, 16), Rect2(64, 0, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8xfev"]
+_data = {
+&"RESET": SubResource("Animation_u7lgk"),
+&"Roll": SubResource("Animation_qfnnr")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swhhn"]
+atlas = ExtResource("1_6k8ms")
+region = Rect2(0, 0, 16, 16)
+
+[node name="AnimatedDice" type="CenterContainer"]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(2, 2)
+
+[node name="AnimateDice" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8xfev")
+}
+
+[node name="DiceDisplay" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_swhhn")
+expand_mode = 3
+stretch_mode = 5

@@ -11,6 +11,7 @@ extends Node
 @onready var dice_container: GridContainer = $"../../VBoxContainer/DiceMat/MarginContainer/GridContainer"
 @onready var scoring_manager: Node = $"../ScoringManager"
 
+const DICE_ROLL := preload("res://Scene/animated_dice.tscn")
 const F_ICON := preload("res://Assets/buttons/farkleicon.tscn")
 const DICE_TEXTURES: Array[PackedScene] = [
 	preload("res://Assets/Dice/dice1.tscn"),
@@ -29,8 +30,8 @@ var farkle_count := 0
 
 var farkled := false
 var has_opened := false
-var game_over := false;
-
+var game_over := false
+var end_round = false
 # Represents all 6 dice. Each element will be a dictionary:
 # { "value": int, "is_held": bool }
 var all_dice: Array = [] 
@@ -45,6 +46,7 @@ func _ready():
 	_update_display() 
 
 func _reset_round():
+	end_round = false
 	current_round_score = 0
 	farkled = false
 	for die_data in all_dice:
@@ -73,11 +75,16 @@ func _update_display():
 		
 	round_score_label.text = "%s" % current_round_score
 	total_score_label.text = "%s" % total_score
-
-
+	
 func _on_roll_button_pressed():
 	if game_over:
 		return
+
+	if end_round:
+		_reset_round()
+		_update_display()
+
+		
 	status_label.text = "\nRolling!!"
 	farkled = false
 
@@ -184,7 +191,6 @@ func _on_end_button_pressed():
 	else:
 		if not has_opened and current_round_score < 500:
 			status_label.text = "You need at least 500 points to get on the board!"
-			roll_button.disabled = false
 			return
 		else:
 			if not has_opened:
@@ -194,13 +200,15 @@ func _on_end_button_pressed():
 				status_label.text = "Taking points! " + str(current_round_score) + " points added to total."
 			total_score += current_round_score
 	
+	roll_button.disabled = false
+
 	if WinManager.check_win(total_score):
 		_end_game("Congrats! You won!!")
 		return
 	
 	round_count += 1 
-	_reset_round() 
-	_update_display() 
+	end_round = true
+
 	
 	
 func _end_game(message: String):
@@ -228,3 +236,17 @@ func _end_game(message: String):
 func _add_farkle_icon():
 		var inst := F_ICON.instantiate()
 		farkle_container.add_child(inst)
+
+
+func _roll_dice_animation():
+	for child in dice_container.get_children():
+		child.queue_free()
+	#Instantiate Dice roll scene
+	DICE_ROLL.instantiate()
+	var roll_animation_instance = DICE_ROLL.instantiate()
+	dice_container.add_child(roll_animation_instance)
+	
+	var animation_player = roll_animation_instance.get_node("AnimateDice")
+	if animation_player:
+		animation_player.play("Roll", -1, 1.0, true)
+		
