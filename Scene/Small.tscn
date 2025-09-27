@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://bblid5l88n5t6"]
 
 [ext_resource type="Script" uid="uid://ft4h6alv4a3l" path="res://Scripts/game.gd" id="1_44rrq"]
-[ext_resource type="Script" uid="uid://2o6ue81275ei" path="res://Scripts/game_manager1.gd" id="2_xkchk"]
+[ext_resource type="Script" uid="uid://2o6ue81275ei" path="res://Scripts/game_manager.gd" id="2_xkchk"]
 [ext_resource type="Script" uid="uid://f6qojr857eh5" path="res://Scripts/scoring_manager.gd" id="3_7ac1t"]
 [ext_resource type="Texture2D" uid="uid://bxir6h2jo71k7" path="res://Assets/FarkedGameBoard.png" id="4_pqevm"]
 [ext_resource type="Texture2D" uid="uid://ca1jbi3jehn4y" path="res://HamburgerButtonBase.tres" id="5_h4ljo"]
