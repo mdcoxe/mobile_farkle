@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://fxrfow6rtn01"]
 
-[ext_resource type="Script" uid="uid://dv0034c4qda48" path="res://Scripts/game_over_stats.gd" id="1_mbo1y"]
-[ext_resource type="FontFile" uid="uid://iq653u836gk" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="2_7sk8l"]
+[ext_resource type="Script" uid="uid://dv0034c4qda48" path="res://Scripts/game_over_stats.gd" id="1_pi44w"]
+[ext_resource type="FontFile" uid="uid://iq653u836gk" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="2_ygcjp"]
 
 [node name="GameOverStatsPanel" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mbo1y")
+script = ExtResource("1_pi44w")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -46,7 +46,7 @@ theme_override_constants/separation = 15
 
 [node name="Title" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 text = "Game Over!!"
 horizontal_alignment = 1
 
@@ -55,7 +55,7 @@ layout_mode = 2
 
 [node name="ResultsLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 text = "You Won!!"
 horizontal_alignment = 1
 
@@ -73,22 +73,22 @@ theme_override_constants/separation = 15
 
 [node name="TotalScoreLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 text = "Total Score:"
 
 [node name="HighesRollLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
-text = "Highest Roll:"
+theme_override_fonts/font = ExtResource("2_ygcjp")
+text = "Highest Round Score:"
 
 [node name="FarklesCountLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 text = "# Farkles:"
 
 [node name="RoundsCountLabel" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 text = "# Rounds: "
 
 [node name="Values" type="VBoxContainer" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -98,19 +98,19 @@ theme_override_constants/separation = 15
 
 [node name="TotalScoreValue" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 
 [node name="HighesRollValue" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 
 [node name="FarkleCountValue" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 
 [node name="RoundsCountValue" type="Label" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 
 [node name="Spacer" type="Control" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -125,7 +125,7 @@ theme_override_constants/margin_bottom = 5
 [node name="ReturnToStartButton" type="Button" parent="MarginContainer/ColorRect/MarginContainer/VBoxContainer/ButtonContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_7sk8l")
+theme_override_fonts/font = ExtResource("2_ygcjp")
 theme_override_font_sizes/font_size = 21
 text = "Play Again?"
 

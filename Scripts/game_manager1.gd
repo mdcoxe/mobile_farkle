@@ -23,7 +23,7 @@ const DICE_TEXTURES: Array[PackedScene] = [
 	preload("res://Assets/Dice/dice6.tscn"),
 ]
 const F_ICON := preload("res://Assets/buttons/farkleicon.tscn")
-const GAME_OVER_STATS = preload("res://GameOverStats.tscn")
+const GAME_OVER_STATS = preload("res://Scene/GameOverStats.tscn")
 
 var _rolling_anim_active: bool = false
 var _roll_anim_started:bool = false
@@ -149,8 +149,10 @@ func _start_staggered_roll_animation(dice_after_roll: Array) -> void:
 	
 	for i in dice_after_roll.size():
 		var die = dice_after_roll[i]
-		if die.is_held:
-			var inst = _make_face_node(die.value)
+		if bool(die.get("is_held", false)):
+			var inst := _make_face_node(int(die.value))
+			if inst is CanvasItem:
+				(inst as CanvasItem).modulate = Color(0.6,0.6,0.6)
 			dice_container.add_child(inst)
 			continue
 		
@@ -161,12 +163,10 @@ func _start_staggered_roll_animation(dice_after_roll: Array) -> void:
 		if animate:
 			animate.play("Roll", -1, 1.0, true)
 		
-		var delay := randf_range(0.5, 4.0)
+		var delay := randf_range(0.5, 3.0)
 		_reveal_die_later(i, die.value, delay)
 
 func _apply_held_marker() -> void:
-	#var child_count: int = dice_container.get_child_count()
-	#var dice_count: int = game.dice.size()
 	var count: int = min(dice_container.get_child_count(), game.dice.size())
 	for i in range(count):
 		var child_node: Node = dice_container.get_child(i)
@@ -230,6 +230,7 @@ func _on_scored(roll_score: int, round_score: int) -> void:
 	
 func _on_farkled(count: int) -> void:
 	var icon := F_ICON.instantiate()
+	status_label.text = "Farkled"
 	farkle_container.add_child(icon)
 
 func _on_round_ended(round_num: int, total: int) -> void:
@@ -244,9 +245,12 @@ func _on_round_ended(round_num: int, total: int) -> void:
 
 func _on_game_over(message: String, stats: Dictionary) -> void:
 	status_label.text = message
-	var screen = GAME_OVER_STATS.instantiate()
-	add_child(screen)
-	screen.show_stats(stats)
+	var game_over_scene = GAME_OVER_STATS.instantiate()
+	add_child(game_over_scene)
+	game_over_scene.show_stats(stats)
+
+func _on_menu_press():
+	print("Menu opened")
 	
 func _update_totals():
 	total_score_label.text = str(game.total_score)

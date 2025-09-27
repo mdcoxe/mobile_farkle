@@ -3,7 +3,7 @@ extends Control
 @onready var return_to_start_button: Button = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/ButtonContainer/ReturnToStartButton
 @onready var font_size_timer: Timer = $FontSizeTimer
 @onready var total_score_value: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values/TotalScoreValue
-@onready var highes_roll_value: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values/HighesRollValue
+@onready var highest_roll_value: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values/HighesRollValue
 @onready var farkle_count_value: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values/FarkleCountValue
 @onready var rounds_count_value: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values/RoundsCountValue
 @onready var results_label: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/ResultsLabel
@@ -34,6 +34,7 @@ func show_stats(stats: Dictionary):
 	# Update the UI labels with the values from the stats dictionary.
 	results_label.text = stats["message"]
 	total_score_value.text = str(stats["total_score"])
+	highest_roll_value.text = str(stats["highest_roll"])
 	rounds_count_value.text = str(stats["round_count"])
 	farkle_count_value.text = str(stats["farkle_count"])
 
