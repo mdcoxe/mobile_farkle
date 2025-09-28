@@ -1,0 +1,102 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnw4swqx4rdvh"]
+
+[ext_resource type="FontFile" uid="uid://iq653u836gk" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="1_1kgyw"]
+[ext_resource type="Script" uid="uid://dk188pqopucxs" path="res://Scripts/rules.gd" id="1_h80o6"]
+
+[node name="Rules" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+script = ExtResource("1_h80o6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(1, 0, 0.305882, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Rules"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Stats" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="TotalScoreLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Win: Reach 10,000 points."
+autowrap_mode = 2
+
+[node name="HighesRollLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Loss: Farkle 10 times."
+autowrap_mode = 2
+
+[node name="FarklesCountLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Open: Score 500+ on your first turn."
+autowrap_mode = 2
+
+[node name="RoundsCountLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Hot Dice: If all 6 dice score, must re-roll all 6."
+autowrap_mode = 2
+
+[node name="TotalScoreValue" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Farkle: A 0-point roll ends your turn and costs all points for that turn"
+autowrap_mode = 2
+
+[node name="ButtonContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CloseRulesButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+theme_override_font_sizes/font_size = 21
+text = "Close"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ButtonContainer/CloseRulesButton" to="." method="_on_close_button_pressed"]

@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqlkx1vky5y1h"]
+
+[ext_resource type="FontFile" uid="uid://iq653u836gk" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="1_b5m48"]
+[ext_resource type="Script" uid="uid://dk188pqopucxs" path="res://Scripts/rules.gd" id="1_sxac5"]
+
+[node name="Scoring" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+script = ExtResource("1_sxac5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(1, 0, 0.305882, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_b5m48")
+text = "Scoring"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_b5m48")
+theme_override_fonts/bold_font = ExtResource("1_b5m48")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Three Pairs (e.g., 2,2,4,4,6,6)	
+	1500
+6-Dice Straight (e.g., 1,2,3,4,5,6)	
+	1500
+Four-of-a-Kind & One Pair	
+	1500
+Two Triples (e.g., 2,2,2,5,5,5)	
+	2500
+Six-of-a-Kind	
+	3000
+Five-of-a-Kind	
+	2000
+Four-of-a-Kind	
+	1000
+Three 1s
+	1000
+Three 2s - 6s	
+   Dice Value x 100 
+   e.g. Three 3's = 3 x 100
+Single 1	
+   100
+Single 5	
+   50"
+fit_content = true
+
+[node name="ButtonContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CloseScoringButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_b5m48")
+theme_override_font_sizes/font_size = 21
+text = "Close"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ButtonContainer/CloseScoringButton" to="." method="_on_close_button_pressed"]

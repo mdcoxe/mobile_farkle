@@ -1,29 +1,20 @@
 extends Control
 
-@onready var rules: MarginContainer = $Rules
+const RULES_SCENE = preload("res://Scene/Rules.tscn")
+const SCORING_SCENE = preload("res://Scene/Scoring.tscn")
 
 func _on_play_pressed() -> void:
 	print("PLAY")
 	get_tree().change_scene_to_file("res://Scene/Small.tscn")
 	
-	
 func _on_quit_pressed() -> void:
 	print("QUIT")
 	get_tree().quit()
 	
-
-
-func _on_close_rules_button_pressed() -> void:
-	get_node("Rules").hide()
-	
 func _on_rules_pressed() -> void:
-	get_node("Rules").visible=true
-
-
-
+	var rules_scene = RULES_SCENE.instantiate()
+	add_child(rules_scene)
 
 func _on_scoring_pressed() -> void:
-	get_node("Scoring").visible = true
-
-func _on_close_scoring_button_pressed() -> void:
-	get_node("Scoring").hide()
+	var scoring_scene = SCORING_SCENE.instantiate()
+	add_child(scoring_scene)
