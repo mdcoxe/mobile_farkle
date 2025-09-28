@@ -17,7 +17,7 @@ script = ExtResource("1_sxac5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
-color = Color(1, 0, 0.305882, 1)
+color = Color(0.164706, 0.180392, 0.47451, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1

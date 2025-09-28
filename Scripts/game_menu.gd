@@ -3,6 +3,7 @@ extends MarginContainer
 const RULES_SCENE = preload("res://Scene/Rules.tscn")
 const SCORING_SCENE = preload("res://Scene/Scoring.tscn")
 const STATS_SCENE = preload("res://Scene/Scoring.tscn")
+@onready var start_over_dialog: MarginContainer = $ColorRect/StartOverDialog
 
 func _on_close_button_pressed() -> void:
 	queue_free()
@@ -21,4 +22,10 @@ func _on_rules_button_pressed() -> void:
 	add_child(scene)
 
 func _on_start_over_button_pressed() -> void:
-	pass
+	start_over_dialog.visible = true
+
+func _on_start_over_dialog_confirmed() -> void:
+	get_tree().change_scene_to_file("res://Scene/Start.tscn")
+
+func _on_start_over_dialog_canceled() -> void:
+	start_over_dialog.hide()
