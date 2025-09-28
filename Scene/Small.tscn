@@ -14,6 +14,14 @@
 atlas = ExtResource("4_pqevm")
 region = Rect2(0, 0, 180, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysysf"]
+atlas = ExtResource("4_pqevm")
+region = Rect2(640, 181, 74, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjg4e"]
+atlas = ExtResource("4_pqevm")
+region = Rect2(460, 181, 74, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lp6yv"]
 atlas = ExtResource("4_pqevm")
 region = Rect2(0, 32, 180, 105)
@@ -25,14 +33,6 @@ region = Rect2(360, 137, 180, 38)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ridx"]
 atlas = ExtResource("4_pqevm")
 region = Rect2(0, 175, 180, 145)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ysysf"]
-atlas = ExtResource("4_pqevm")
-region = Rect2(640, 181, 74, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yjg4e"]
-atlas = ExtResource("4_pqevm")
-region = Rect2(460, 181, 74, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yikv"]
 atlas = ExtResource("4_pqevm")
@@ -70,6 +70,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_phsnv")
 
 [node name="MainMenu" type="HBoxContainer" parent="VBoxContainer/Header"]
+visible = false
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -78,14 +79,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-
-[node name="Spacer" type="Control" parent="VBoxContainer/Header/MainMenu"]
-layout_mode = 2
-size_flags_horizontal = 3
+alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Header/MainMenu"]
 layout_mode = 2
-mouse_filter = 2
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 3
 
@@ -93,10 +90,18 @@ theme_override_constants/margin_right = 3
 z_as_relative = false
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-mouse_force_pass_scroll_events = false
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("5_h4ljo")
 texture_pressed = ExtResource("6_pdcq8")
 texture_hover = ExtResource("7_78fkn")
+
+[node name="RollButton" type="TextureButton" parent="VBoxContainer/Header/MainMenu/MarginContainer"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("8_33nk8")
+texture_pressed = SubResource("AtlasTexture_ysysf")
+texture_hover = SubResource("AtlasTexture_yjg4e")
 
 [node name="DiceMat" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
@@ -224,6 +229,20 @@ texture_normal = ExtResource("9_3xvrw")
 texture_pressed = SubResource("AtlasTexture_5yikv")
 texture_hover = SubResource("AtlasTexture_36gnl")
 
+[node name="Hamburger2" type="TextureButton" parent="."]
+z_as_relative = false
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+offset_left = 153.0
+offset_top = 4.0
+offset_right = 177.0
+offset_bottom = 28.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_h4ljo")
+texture_pressed = ExtResource("6_pdcq8")
+texture_hover = ExtResource("7_78fkn")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 3.0
@@ -242,5 +261,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 
 [connection signal="pressed" from="VBoxContainer/Header/MainMenu/MarginContainer/Hamburger" to="Managers/GameManager" method="_on_hamburger_pressed"]
+[connection signal="pressed" from="VBoxContainer/Header/MainMenu/MarginContainer/RollButton" to="Managers/GameManager" method="_on_hamburger_pressed"]
 [connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton" to="Managers/GameManager" method="_on_roll_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2/CollectButton" to="Managers/GameManager" method="_on_end_button_pressed"]
+[connection signal="pressed" from="Hamburger2" to="Managers/GameManager" method="_on_hamburger_pressed"]

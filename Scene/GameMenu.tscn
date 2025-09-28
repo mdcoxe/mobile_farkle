@@ -9,6 +9,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 script = ExtResource("1_qwpw8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -22,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 3
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
@@ -33,10 +37,10 @@ theme_override_constants/separation = 5
 
 [node name="Title" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("2_lvykh")
-text = "Main Menu
-
-"
+theme_override_font_sizes/font_size = 24
+text = "Main Menu"
 horizontal_alignment = 1
 
 [node name="StartOverButtonCont" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
@@ -109,7 +113,8 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvykh")
 theme_override_font_sizes/font_size = 21
-text = "Close"
+text = "Close
+"
 
 [node name="StartOverDialog" type="MarginContainer" parent="ColorRect"]
 visible = false
@@ -140,7 +145,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 2
 theme_override_fonts/font = ExtResource("2_lvykh")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 21
 text = "Restart Game?"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -154,7 +159,7 @@ custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_lvykh")
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 16
 text = "All progress will be lost."
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -176,10 +181,12 @@ alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="ColorRect/StartOverDialog/ColorRect/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "OK"
 
 [node name="CancelButton" type="Button" parent="ColorRect/StartOverDialog/ColorRect/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "CANCEL"
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/StartOverButtonCont/StartOverButton" to="." method="_on_start_over_button_pressed"]
