@@ -69,7 +69,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 texture = SubResource("AtlasTexture_phsnv")
 
-[node name="HeaderHBox" type="HBoxContainer" parent="VBoxContainer/Header"]
+[node name="MainMenu" type="HBoxContainer" parent="VBoxContainer/Header"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -79,17 +79,17 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 
-[node name="Spacer" type="Control" parent="VBoxContainer/Header/HeaderHBox"]
+[node name="Spacer" type="Control" parent="VBoxContainer/Header/MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Header/HeaderHBox"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Header/MainMenu"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 3
 
-[node name="Hamburger" type="TextureButton" parent="VBoxContainer/Header/HeaderHBox/MarginContainer"]
+[node name="Hamburger" type="TextureButton" parent="VBoxContainer/Header/MainMenu/MarginContainer"]
 z_as_relative = false
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
@@ -241,5 +241,6 @@ offset_bottom = 90.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 
+[connection signal="pressed" from="VBoxContainer/Header/MainMenu/MarginContainer/Hamburger" to="Managers/GameManager" method="_on_hamburger_pressed"]
 [connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton" to="Managers/GameManager" method="_on_roll_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2/CollectButton" to="Managers/GameManager" method="_on_end_button_pressed"]

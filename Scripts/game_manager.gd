@@ -23,6 +23,7 @@ const DICE_TEXTURES: Array[PackedScene] = [
 	preload("res://Assets/Dice/dice6.tscn"),
 ]
 const F_ICON := preload("res://Assets/buttons/farkleicon.tscn")
+const GAME_MENU_SCENE := preload("res://Scene/GameMenu.tscn")
 const GAME_OVER_STATS = preload("res://Scene/GameOverStats.tscn")
 
 var _rolling_anim_active: bool = false
@@ -265,3 +266,8 @@ func _on_roll_button_pressed():
 func _on_end_button_pressed():
 	game.intent_bank()
 	
+
+
+func _on_hamburger_pressed() -> void:
+	var scene = GAME_MENU_SCENE.instantiate()
+	add_child(scene)

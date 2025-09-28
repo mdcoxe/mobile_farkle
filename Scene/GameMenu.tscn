@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci4ux2oq2ijj"]
+
+[ext_resource type="Script" uid="uid://bxyxykubhu52r" path="res://Scripts/game_menu.gd" id="1_qwpw8"]
+[ext_resource type="FontFile" uid="uid://iq653u836gk" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="2_lvykh"]
+
+[node name="GameMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+script = ExtResource("1_qwpw8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(1, 0, 0.305882, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Title" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lvykh")
+text = "Main Menu
+
+"
+horizontal_alignment = 1
+
+[node name="StartOverButtonCont" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="StartOverButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/StartOverButtonCont"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lvykh")
+theme_override_font_sizes/font_size = 21
+text = "Start Over"
+
+[node name="RulesButtonCon" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RulesButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/RulesButtonCon"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lvykh")
+theme_override_font_sizes/font_size = 21
+text = "Rules
+"
+
+[node name="ScoringButtonCont" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScoringButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/ScoringButtonCont"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lvykh")
+theme_override_font_sizes/font_size = 21
+text = "Scoring
+"
+
+[node name="StatsButtonCon" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="StatsButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/StatsButtonCon"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lvykh")
+theme_override_font_sizes/font_size = 21
+text = "Stats"
+
+[node name="CloseButtonCont" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CloseButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/CloseButtonCont"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lvykh")
+theme_override_font_sizes/font_size = 21
+text = "Close"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/StartOverButtonCont/StartOverButton" to="." method="_on_start_over_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/RulesButtonCon/RulesButton" to="." method="_on_rules_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ScoringButtonCont/ScoringButton" to="." method="_on_scoring_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/StatsButtonCon/StatsButton" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/CloseButtonCont/CloseButton" to="." method="_on_close_button_pressed"]
