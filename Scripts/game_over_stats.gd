@@ -28,7 +28,7 @@ func _on_font_size_timer_timeout() -> void:
 
 func _on_return_to_start_button_pressed() -> void:
 	WinManager.did_win = false
-	get_tree().change_scene_to_file("res://Start.tscn")
+	get_tree().change_scene_to_file("res://Scene/Start.tscn")
 
 func show_stats(stats: Dictionary):
 	# Update the UI labels with the values from the stats dictionary.
