@@ -44,52 +44,58 @@ horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="Stats" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="FarklesCountLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Opening Score: You must bank a score of 500+ points to unlock scoring. Once unlocked, you can bank any score from 50 points up"
+autowrap_mode = 2
+
+[node name="TotalScoreLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Win: Reach 10,000 points"
+autowrap_mode = 2
+
+[node name="HighesRollLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Lose: Farkle 10 times"
+autowrap_mode = 2
+
+[node name="RoundsCountLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Hot Dice: If all 6 dice score, must re-roll all 6"
+autowrap_mode = 2
+
+[node name="TotalScoreValue" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/Stats"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_1kgyw")
+text = "Farkle: A 0-point roll ends your turn and forfits all points for that turn"
+autowrap_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Stats" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 5
-
-[node name="TotalScoreLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Stats"]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_1kgyw")
-text = "Win: Reach 10,000 points."
-autowrap_mode = 2
-
-[node name="HighesRollLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Stats"]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_1kgyw")
-text = "Loss: Farkle 10 times."
-autowrap_mode = 2
-
-[node name="FarklesCountLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Stats"]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_1kgyw")
-text = "Open: Score 500+ on your first turn."
-autowrap_mode = 2
-
-[node name="RoundsCountLabel" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Stats"]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_1kgyw")
-text = "Hot Dice: If all 6 dice score, must re-roll all 6."
-autowrap_mode = 2
-
-[node name="TotalScoreValue" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Stats"]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_1kgyw")
-text = "Farkle: A 0-point roll ends your turn and costs all points for that turn"
-autowrap_mode = 2
 
 [node name="ButtonContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
