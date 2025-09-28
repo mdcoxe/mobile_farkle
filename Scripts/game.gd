@@ -53,7 +53,7 @@ func _game_end(message: String):
 		"highest_roll": highest_roll,
 		"farkle_count": farkle_count,
 		"round_count": round_count,
-		"win": message.find("won") != -1
+		"win": message.find("WON") != -1
 	}
 	emit_signal("game_over", message, stats)
 

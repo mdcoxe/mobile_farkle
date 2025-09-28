@@ -21,15 +21,19 @@ color = Color(0.164706, 0.180392, 0.47451, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = -0.417614
+anchor_right = 1.41761
 anchor_bottom = 1.0
+offset_left = 73.5
+offset_right = -73.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
@@ -55,33 +59,30 @@ theme_override_constants/margin_left = 5
 [node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+theme_override_constants/line_separation = 4
 theme_override_fonts/normal_font = ExtResource("1_b5m48")
 theme_override_fonts/bold_font = ExtResource("1_b5m48")
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "Three Pairs (e.g., 2,2,4,4,6,6)	
-	1500
-6-Dice Straight (e.g., 1,2,3,4,5,6)	
-	1500
-Four-of-a-Kind & One Pair	
-	1500
-Two Triples (e.g., 2,2,2,5,5,5)	
-	2500
-Six-of-a-Kind	
-	3000
-Five-of-a-Kind	
-	2000
-Four-of-a-Kind	
-	1000
-Three 1s
-	1000
-Three 2s - 6s	
-   Dice Value x 100 
-   e.g. Three 3's = 3 x 100
-Single 1	
-   100
-Single 5	
-   50"
+text = "Six-of-a-Kind					3000
+Two Triples						2500 
+	e.g., 2,2,2,5,5,5	
+Five-of-a-Kind					2000
+Three Pairs 					1500
+	e.g., 2,2,4,4,6,6	
+6-Dice Straight				1500
+	e.g., 1,2,3,4,5,6	
+Four-of-a-Kind & Pair	1500
+	e.g., 3,3,3,3,5,5
+Four-of-a-Kind				1000
+Three 1s							1000
+Three 2s							200
+Three 3s				 			300	 
+Three 4s				 			400	 
+Three 5s				 			500	 
+Three 6s				 			600	 
+Single 1								100
+Single 5							50"
 fit_content = true
 
 [node name="ButtonContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
