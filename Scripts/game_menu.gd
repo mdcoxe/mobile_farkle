@@ -2,7 +2,7 @@ extends MarginContainer
 
 const RULES_SCENE = preload("res://Scene/Rules.tscn")
 const SCORING_SCENE = preload("res://Scene/Scoring.tscn")
-const STATS_SCENE = preload("res://Scene/Scoring.tscn")
+const STATS_SCENE = preload("res://Scene/Stats.tscn")
 @onready var start_over_dialog: MarginContainer = $ColorRect/StartOverDialog
 @onready var margin_container: MarginContainer = $ColorRect/MarginContainer
 
