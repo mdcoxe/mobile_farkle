@@ -7,6 +7,8 @@ extends Control
 @onready var farkle_count_value: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values/FarkleCountValue
 @onready var rounds_count_value: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/HBoxContainer/Values/RoundsCountValue
 @onready var results_label: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/ResultsLabel
+@onready var texture_button: TextureButton = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/ButtonContainer/TextureButton
+@onready var label: Label = $MarginContainer/ColorRect/MarginContainer/VBoxContainer/ButtonContainer/TextureButton/Label
 
 var current_font_size = 21
 var direction = 1 
@@ -23,7 +25,7 @@ func _on_font_size_timer_timeout() -> void:
 	if current_font_size >= 36 or current_font_size <= 28:
 		direction *= -1
 		
-	return_to_start_button.add_theme_font_size_override("font_size", current_font_size)
+	label.add_theme_font_size_override("font_size", current_font_size)
 
 
 func _on_return_to_start_button_pressed() -> void:

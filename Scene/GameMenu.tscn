@@ -1,7 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci4ux2oq2ijj"]
+[gd_scene load_steps=10 format=3 uid="uid://ci4ux2oq2ijj"]
 
 [ext_resource type="Script" uid="uid://bxyxykubhu52r" path="res://Scripts/game_menu.gd" id="1_qwpw8"]
 [ext_resource type="FontFile" uid="uid://iq653u836gk" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="2_lvykh"]
+[ext_resource type="Texture2D" uid="uid://b1fovqcskaufv" path="res://Assets/buttons/MenuButtons.png" id="3_lvykh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5klw"]
+atlas = ExtResource("3_lvykh")
+region = Rect2(0, 40, 156, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_psmp7"]
+texture = SubResource("AtlasTexture_h5klw")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l4ar"]
+atlas = ExtResource("3_lvykh")
+region = Rect2(0, 80, 156, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h5klw"]
+texture = SubResource("AtlasTexture_2l4ar")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvykh"]
+atlas = ExtResource("3_lvykh")
+region = Rect2(0, 0, 156, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2l4ar"]
+texture = SubResource("AtlasTexture_lvykh")
 
 [node name="GameMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -55,7 +77,11 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvykh")
 theme_override_font_sizes/font_size = 21
-text = "Start Over"
+theme_override_styles/hover = SubResource("StyleBoxTexture_psmp7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h5klw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2l4ar")
+text = "Start Over
+"
 
 [node name="RulesButtonCon" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -69,6 +95,9 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvykh")
 theme_override_font_sizes/font_size = 21
+theme_override_styles/hover = SubResource("StyleBoxTexture_psmp7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h5klw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2l4ar")
 text = "Rules
 "
 
@@ -84,6 +113,9 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvykh")
 theme_override_font_sizes/font_size = 21
+theme_override_styles/hover = SubResource("StyleBoxTexture_psmp7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h5klw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2l4ar")
 text = "Scoring
 "
 
@@ -99,7 +131,11 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvykh")
 theme_override_font_sizes/font_size = 21
-text = "Stats"
+theme_override_styles/hover = SubResource("StyleBoxTexture_psmp7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h5klw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2l4ar")
+text = "Stats
+"
 
 [node name="CloseButtonCont" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -113,6 +149,9 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvykh")
 theme_override_font_sizes/font_size = 21
+theme_override_styles/hover = SubResource("StyleBoxTexture_psmp7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h5klw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2l4ar")
 text = "Close
 "
 

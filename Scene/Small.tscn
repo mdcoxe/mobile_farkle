@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bblid5l88n5t6"]
+[gd_scene load_steps=30 format=3 uid="uid://bblid5l88n5t6"]
 
 [ext_resource type="Script" uid="uid://ft4h6alv4a3l" path="res://Scripts/game.gd" id="1_44rrq"]
 [ext_resource type="Script" uid="uid://2o6ue81275ei" path="res://Scripts/game_manager.gd" id="2_xkchk"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://c21hbmavr43ch" path="res://HamburgerButtonHover.tres" id="7_78fkn"]
 [ext_resource type="Texture2D" uid="uid://dxxpqaq0pk7f6" path="res://Roll.tres" id="8_33nk8"]
 [ext_resource type="Texture2D" uid="uid://blxnaprpgb14t" path="res://Collect.tres" id="9_3xvrw"]
+[ext_resource type="FontFile" uid="uid://iq653u836gk" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="9_7ac1t"]
+[ext_resource type="Texture2D" uid="uid://327db6t85r87" path="res://Assets/buttons/BigButton-Recovered.png" id="10_pqevm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_phsnv"]
 atlas = ExtResource("4_pqevm")
@@ -33,6 +35,41 @@ region = Rect2(360, 137, 180, 38)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ridx"]
 atlas = ExtResource("4_pqevm")
 region = Rect2(0, 175, 180, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78fkn"]
+atlas = ExtResource("10_pqevm")
+region = Rect2(0, 0, 74, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_33nk8"]
+texture = SubResource("AtlasTexture_78fkn")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ac1t"]
+atlas = ExtResource("10_pqevm")
+region = Rect2(0, 64, 74, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pqevm"]
+texture = SubResource("AtlasTexture_7ac1t")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdcq8"]
+atlas = ExtResource("10_pqevm")
+region = Rect2(0, 128, 74, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_78fkn"]
+texture = SubResource("AtlasTexture_pdcq8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4ljo"]
+atlas = ExtResource("10_pqevm")
+region = Rect2(0, 0, 74, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pdcq8"]
+texture = SubResource("AtlasTexture_h4ljo")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqevm"]
+atlas = ExtResource("10_pqevm")
+region = Rect2(0, 0, 74, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4ljo"]
+texture = SubResource("AtlasTexture_pqevm")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yikv"]
 atlas = ExtResource("4_pqevm")
@@ -210,20 +247,45 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 5
 
 [node name="RollButton" type="TextureButton" parent="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("8_33nk8")
 texture_pressed = SubResource("AtlasTexture_ysysf")
 texture_hover = SubResource("AtlasTexture_yjg4e")
+
+[node name="RollButton2" type="Button" parent="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_7ac1t")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/disabled = SubResource("StyleBoxTexture_33nk8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pqevm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_78fkn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pdcq8")
+text = "Roll"
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Bottom/HBoxContainer/ButtonBox"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 7
+
+[node name="BankButton" type="Button" parent="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_7ac1t")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/disabled = SubResource("StyleBoxTexture_h4ljo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pqevm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_78fkn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pdcq8")
+text = "Bank"
 
 [node name="CollectButton" type="TextureButton" parent="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("9_3xvrw")
 texture_pressed = SubResource("AtlasTexture_5yikv")
@@ -263,5 +325,7 @@ theme_override_font_sizes/font_size = 8
 [connection signal="pressed" from="VBoxContainer/Header/MainMenu/MarginContainer/Hamburger" to="Managers/GameManager" method="_on_hamburger_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/MainMenu/MarginContainer/RollButton" to="Managers/GameManager" method="_on_hamburger_pressed"]
 [connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton" to="Managers/GameManager" method="_on_roll_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton2" to="Managers/GameManager" method="_on_roll_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2/BankButton" to="Managers/GameManager" method="_on_end_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2/CollectButton" to="Managers/GameManager" method="_on_end_button_pressed"]
 [connection signal="pressed" from="Hamburger2" to="Managers/GameManager" method="_on_hamburger_pressed"]

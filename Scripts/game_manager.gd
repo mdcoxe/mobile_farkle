@@ -6,9 +6,11 @@ extends Node
 @onready var total_score_label: Label = $"../../VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox/TotalScoreLabel"
 @onready var round_score_label: Label = $"../../VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox/RoundScoreLabel"
 @onready var round_label: Label = $"../../VBoxContainer/Bottom/HBoxContainer/MarginContainer/StatsBox/RoundNumLabel"
+@onready var roll_button: Button = $"../../VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton2"
+@onready var bank_button: Button = $"../../VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2/BankButton"
 
-@onready var roll_button: TextureButton = $"../../VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton"
-@onready var bank_button: TextureButton = $"../../VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2/CollectButton"
+#@onready var roll_button: TextureButton = $"../../VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer/RollButton"
+#@onready var bank_button: TextureButton = $"../../VBoxContainer/Bottom/HBoxContainer/ButtonBox/MarginContainer2/CollectButton"
 @onready var farkle_container: HBoxContainer = $"../../VBoxContainer/FarkedBar/MarginContainer/FarkedBarHBox"
 @onready var dice_container: GridContainer = $"../../VBoxContainer/DiceMat/MarginContainer/GridContainer"
 @onready var scoring_manager: Node = $"../ScoringManager"

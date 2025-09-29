@@ -1,7 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnw4swqx4rdvh"]
+[gd_scene load_steps=10 format=3 uid="uid://bnw4swqx4rdvh"]
 
 [ext_resource type="FontFile" uid="uid://iq653u836gk" path="res://Assets/Fonts/Jersey10-Regular.ttf" id="1_1kgyw"]
 [ext_resource type="Script" uid="uid://dk188pqopucxs" path="res://Scripts/rules.gd" id="1_h80o6"]
+[ext_resource type="Texture2D" uid="uid://b1fovqcskaufv" path="res://Assets/buttons/MenuButtons.png" id="3_lta85"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yjl0"]
+atlas = ExtResource("3_lta85")
+region = Rect2(0, 400, 156, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h47xc"]
+texture = SubResource("AtlasTexture_0yjl0")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dyx1"]
+atlas = ExtResource("3_lta85")
+region = Rect2(0, 440, 156, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hcp68"]
+texture = SubResource("AtlasTexture_8dyx1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6lkc"]
+atlas = ExtResource("3_lta85")
+region = Rect2(0, 360, 156, 40)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3h7wc"]
+texture = SubResource("AtlasTexture_x6lkc")
 
 [node name="Rules" type="MarginContainer"]
 anchors_preset = 15
@@ -109,6 +131,9 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_1kgyw")
 theme_override_font_sizes/font_size = 21
+theme_override_styles/hover = SubResource("StyleBoxTexture_h47xc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hcp68")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3h7wc")
 text = "Close"
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ButtonContainer/CloseRulesButton" to="." method="_on_close_button_pressed"]
